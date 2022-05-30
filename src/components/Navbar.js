@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component {
-    render() {
-        this.state={
-            // [${this.state.currDate.toLocaleString()}]
+    constructor() {
+        super();
+        this.state = {
             currDate : new Date()
         }
+      }
+    render() {
         setInterval(() => {
             this.setState({
               currDate: new Date()
