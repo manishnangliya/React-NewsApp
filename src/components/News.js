@@ -43,6 +43,7 @@ export default class News extends Component {
     this.setState({
       pageNo: this.state.pageNo + 1,
     });
+    // console.log(this.pageNo);
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a17f729c44b46939296f9e9a9fe410f&page=${this.state.pageNo}&pageSize=${this.props.pageSize}`
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -53,7 +54,6 @@ export default class News extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="container my-3">
         <h1 style={{ textAlign: "center", color: "white" }}>{`NewsApp - Top ${this.capitalizeFirstLetter(this.props.category)} News-heading`}</h1>
