@@ -21,15 +21,19 @@ export default class News extends Component {
   }
 
   async updateNews() {
+    this.props.setProgress(10);
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a17f729c44b46939296f9e9a9fe410f&page=${this.state.pageNo}&pageSize=${this.props.pageSize}`
     this.setState({ loading: true })
+    this.props.setProgress(30);
     let data = await fetch(url);
     let parsedData = await data.json();
+    this.props.setProgress(60);
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false
     });
+    this.props.setProgress(100);
   }
 
   async componentDidMount() {
@@ -49,6 +53,7 @@ export default class News extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="container my-3">
         <h1 style={{ textAlign: "center", color: "white" }}>{`NewsApp - Top ${this.capitalizeFirstLetter(this.props.category)} News-heading`}</h1>
